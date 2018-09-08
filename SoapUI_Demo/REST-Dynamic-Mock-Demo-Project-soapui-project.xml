@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="e6cf3205-c10a-48f9-9d13-30c1ae5222df" activeEnvironment="Default" name="REST Dynamic Mock Demo Project" resourceRoot="" soapui-version="5.4.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="fd8eba05-3dc5-4eea-9136-797de4028f93" wadlVersion="http://wadl.dev.java.net/2009/02" name="students" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints/><con:resource name="students" path="/student/1005" id="6fab5562-6283-40ac-8e3d-6356ba47628a"><con:settings/><con:parameters/><con:method name="students" id="2e15af1d-f135-4763-8cb6-e0d58c207546" method="GET"><con:settings/><con:parameters/><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>404</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>text/html; charset=iso-8859-1</con:mediaType><con:status>200</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>500</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>500</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:stud="http://localhost/students/students/students">stud:Response</con:element></con:representation><con:representation type="FAULT"><con:mediaType>application/json</con:mediaType><con:status>400</con:status><con:params/></con:representation><con:request name="Request 1" id="bb37fb07-54f0-40f7-a0b4-0fda6a4bd565" mediaType="application/json"><con:settings/><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:testSuite id="8d2a99ae-7c4f-40e3-afb6-c139d4c53640" name="students TestSuite"><con:description>TestSuite generated for REST Service [students]</con:description><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="f03bb4dd-75cf-4976-be32-d3924bdb827f" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="students TestCase" searchProperties="true"><con:description>TestCase generated for REST Resource [students] located at [/students]</con:description><con:settings/><con:testStep type="restrequest" name="Request 1" id="c4ff93ba-285f-41b3-bb62-8e97de9cabee"><con:settings/><con:config service="students" resourcePath="/student/1005" methodName="students" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Request 1" id="bb37fb07-54f0-40f7-a0b4-0fda6a4bd565" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:8080/students/students</con:endpoint><con:request/><con:originalUri>http://localhost/students/students/students</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:restMockService id="507cb23e-c7af-4636-a8b1-3acde9e43fc9" port="8080" path="/students" host="localhost" name="Students" docroot=""><con:settings/><con:properties/><con:restMockAction name="students" method="GET" resourcePath="/students" id="cccfee9f-987c-4fcf-aaa1-88fa0c4fb2ba"><con:settings/><con:defaultResponse>BadRequest</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+// return the name of the response you want to dispatch
+if(requestPath.contains("1001")){
+     return "student/1001"
+}else if (requestPath.contains("1002")){
+	return "student/1002"
+}else if (requestPath.contains("1003")){
+	return "student/1003"
+}else if (requestPath.contains("1004")){
+	return "student/1004"
+}else if (requestPath.contains("1005")){
+	return "student/1005"
+}else if (requestPath.contains("All")){
+	return "All_Students"
+}else
+{
+	return "BadRequest"
+}
+
+</con:dispatchPath><con:response name="All_Students" id="e16c7a6a-e7f6-4fb4-8f8b-c2fcd6f7d97a" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{ 
+	"students" : {
+		"student" : [
+			{
+			"id" : 1001,
+			"name" : "John",
+			"Course" : "Java",
+			"Branch" : "Computer Science"
+			},
+			{
+			"id" : 1002,
+			"name" : "Mike",
+			"Course" : "Engine",
+			"Branch" : "Automobile"
+			},			
+			{
+			"id" : 1003,
+			"name" : "Steve",
+			"Course" : "Structure",
+			"Branch" : "Civil"
+			},
+			{
+			"id" : 1004,
+			"name" : "Paul",
+			"Course" : "Design",
+			"Branch" : "Mechanical"
+			},
+			{
+			"id" : 1005,
+			"name" : "Chandan",
+			"Course" : "Power",
+			"Branch" : "Electrical"
+			}
+			]
+		}
+}</con:responseContent><con:header><con:name>status</con:name><con:value>all</con:value></con:header></con:response><con:response name="student/1001" id="b25487e8-72c6-4e79-a56d-4784a058f13e" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+	"student" : {
+		"id" : 1001,
+		"name" : "John",
+		"Course" : "Java",
+		"Branch" : "Computer Science"
+		}
+}</con:responseContent><con:header><con:name>status</con:name><con:value>1001</con:value></con:header></con:response><con:response name="student/1002" id="f0e36151-bcbe-4b3b-a7f2-708d821b058c" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+	"student" : {
+		"id" : 1002,
+		"name" : "Mike",
+		"Course" : "Engine",
+		"Branch" : "Automobile"
+		}
+}</con:responseContent><con:header><con:name>status</con:name><con:value>1002</con:value></con:header></con:response><con:response name="student/1003" id="82dbd9a3-a16a-4eb7-bf3b-904a8b3a9cb0" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+	"student" : {
+		"id" : 1003,
+		"name" : "Steve",
+		"Course" : "Structure",
+		"Branch" : "Civil"
+		}
+}</con:responseContent><con:header><con:name>status</con:name><con:value>1003</con:value></con:header><con:header><con:name>status</con:name><con:value>1003</con:value></con:header></con:response><con:response name="student/1004" id="10577487-4f56-4210-aa43-21c4edceff4d" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+	"student" : {
+		"id" : 1004,
+		"name" :  "Paul",
+		"Course" : "Design",
+		"Branch" : "Mechanical"
+		}
+}</con:responseContent><con:header><con:name>status</con:name><con:value>1004</con:value></con:header></con:response><con:response name="student/1005" id="5483ed8a-59c7-4618-b051-7c53a9578636" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+	"student" : {
+		"id" : 1005,
+		"name" : "Chandan",
+		"Course" : "Power",
+		"Branch" : "Electrical"
+		}
+}</con:responseContent><con:header><con:name>status</con:name><con:value>1005</con:value></con:header></con:response><con:response name="BadRequest" id="ad87db01-e1c0-490c-ac39-9c5df71f20fb" httpResponseStatus="400" mediaType="application/json"><con:settings/><con:responseContent>This is a bad request. please check the URI</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
